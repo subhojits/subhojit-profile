@@ -14,6 +14,9 @@
         <div class="admin-links">
             <a class="mini-link" th:href="@{/}">Back to Profile</a>
             <a class="mini-link" th:href="@{/h2-console}" target="_blank" rel="noopener noreferrer">H2 Console</a>
+            <form th:action="@{/admin-logout}" method="post">
+                <button class="mini-link mini-btn" type="submit">Logout</button>
+            </form>
         </div>
     </header>
 

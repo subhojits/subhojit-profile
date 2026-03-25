@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="noise-layer"></div>
+<main class="page login-page">
+    <section class="card login-card">
+        <p class="eyebrow">ADMIN ACCESS</p>
+        <h1 class="login-title">Enter Magic Password</h1>
+        <p class="muted">This area is protected. Enter password to open admin controls.</p>
+
+        <p class="alert error" th:if="${error}">Incorrect password. Try again.</p>
+        <p class="alert ok" th:if="${logout}">Logged out successfully.</p>
+
+        <form class="admin-form" th:action="@{/admin-login}" method="post">
+            <label>Password
+                <input type="password" name="password" required autofocus>
+            </label>
+            <button class="btn btn-primary" type="submit">Open Admin</button>
+        </form>
+
+        <a class="mini-link" th:href="@{/}">Back to Profile</a>
+    </section>
+</main>
+</body>
+</html>

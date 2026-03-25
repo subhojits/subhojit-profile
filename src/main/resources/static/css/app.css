@@ -70,12 +70,18 @@ body {
 .admin-links {
     display: flex;
     gap: 0.9rem;
+    align-items: center;
 }
 
 .mini-link {
     color: #0a4ca4;
     font-weight: 600;
     text-decoration: none;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
 }
 
 .mini-link:hover {
@@ -313,6 +319,46 @@ h4 {
     margin: 0;
     color: #0c5d1b;
     font-weight: 700;
+}
+
+.mini-btn {
+    line-height: 1.2;
+}
+
+.login-page {
+    min-height: 78vh;
+    align-content: center;
+}
+
+.login-card {
+    max-width: 520px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.8rem;
+}
+
+.login-title {
+    margin: 0.15rem 0 0;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.alert {
+    margin: 0;
+    padding: 0.62rem 0.72rem;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.alert.error {
+    background: #ffe8e8;
+    color: #8f1e1e;
+    border: 1px solid #ffcdcd;
+}
+
+.alert.ok {
+    background: #e8f9e9;
+    color: #1d6c2b;
+    border: 1px solid #bdeac4;
 }
 
 .admin-page {
