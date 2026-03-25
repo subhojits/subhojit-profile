@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: subhojit-profile
+    runtime: docker
+    plan: free
+    branch: main
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    healthCheckPath: /
