@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Profile</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="noise-layer"></div>
+<main class="page admin-page">
+    <header class="topbar card">
+        <p class="eyebrow">ADMIN PANEL</p>
+        <div class="admin-links">
+            <a class="mini-link" th:href="@{/}">Back to Profile</a>
+            <a class="mini-link" th:href="@{/h2-console}" target="_blank" rel="noopener noreferrer">H2 Console</a>
+        </div>
+    </header>
+
+    <section class="card" th:if="${status != ''}">
+        <p class="status-text" th:text="'Saved: ' + ${status}">Saved: profile-updated</p>
+    </section>
+
+    <section class="card">
+        <h2>Edit Profile Content</h2>
+        <form class="admin-form" th:action="@{/admin/profile}" method="post">
+            <label>Full Name<input type="text" name="fullName" th:value="${profile.fullName}" required></label>
+            <label>Headline<input type="text" name="headline" th:value="${profile.headline}" required></label>
+            <label>Location<input type="text" name="location" th:value="${profile.location}" required></label>
+            <label>Summary<textarea name="summary" rows="4" th:text="${profile.summary}" required></textarea></label>
+            <label>Primary Email<input type="email" name="primaryEmail" th:value="${profile.primaryEmail}" required></label>
+            <label>Secondary Email<input type="email" name="secondaryEmail" th:value="${profile.secondaryEmail}" required></label>
+            <label>LinkedIn URL<input type="url" name="linkedinUrl" th:value="${profile.linkedinUrl}" required></label>
+            <label>Publication URL<input type="url" name="publicationUrl" th:value="${profile.publicationUrl}" required></label>
+            <label>Credly URL<input type="url" name="credlyUrl" th:value="${profile.credlyUrl}" required></label>
+            <button class="btn btn-primary" type="submit">Save Profile</button>
+        </form>
+    </section>
+
+    <section class="card">
+        <h2>Add Gallery Card</h2>
+        <form class="admin-form" th:action="@{/admin/gallery}" method="post">
+            <label>Title<input type="text" name="title" required></label>
+            <label>Subtitle<input type="text" name="subtitle" required></label>
+            <label>Category<input type="text" name="category" placeholder="Publication / Project / Certification" required></label>
+            <label>Link URL<input type="url" name="url" required></label>
+            <label>Display Order<input type="number" name="displayOrder" value="10" required></label>
+            <label>Description<textarea name="description" rows="3" required></textarea></label>
+            <button class="btn btn-primary" type="submit">Add Card</button>
+        </form>
+    </section>
+
+    <section class="card">
+        <h2>Edit Existing Gallery Cards</h2>
+        <div class="admin-gallery-list">
+            <article class="admin-gallery-item" th:each="item : ${galleryItems}">
+                <form class="admin-form" th:action="@{'/admin/gallery/' + ${item.id}}" method="post">
+                    <label>Title<input type="text" name="title" th:value="${item.title}" required></label>
+                    <label>Subtitle<input type="text" name="subtitle" th:value="${item.subtitle}" required></label>
+                    <label>Category<input type="text" name="category" th:value="${item.category}" required></label>
+                    <label>Link URL<input type="url" name="url" th:value="${item.url}" required></label>
+                    <label>Display Order<input type="number" name="displayOrder" th:value="${item.displayOrder}" required></label>
+                    <label>Description<textarea name="description" rows="3" th:text="${item.description}" required></textarea></label>
+                    <div class="admin-actions">
+                        <button class="btn btn-soft" type="submit">Update</button>
+                    </div>
+                </form>
+                <form th:action="@{'/admin/gallery/' + ${item.id} + '/delete'}" method="post">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+            </article>
+        </div>
+    </section>
+</main>
+</body>
+</html>

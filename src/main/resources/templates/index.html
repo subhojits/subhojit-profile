@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${profile.fullName} + ' | Professional Profile'">Professional Profile</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="noise-layer"></div>
+<main class="page">
+    <header class="topbar card">
+        <p class="eyebrow">PROFESSIONAL PROFILE</p>
+        <a class="mini-link" th:href="@{/admin}">Open Admin</a>
+    </header>
+
+    <section class="hero card">
+        <div class="hero-photo-wrap">
+            <img class="hero-photo" th:src="@{/images/subhojit.jpg}" alt="Subhojit Saha">
+        </div>
+        <div class="hero-content">
+            <h1 th:text="${profile.fullName}">Subhojit Saha</h1>
+            <p class="headline" th:text="${profile.headline}">Senior SAP Integration Consultant and SAP BTP Analyst at SAP</p>
+            <p class="location" th:text="${profile.location}">Gurugram, Haryana, India</p>
+            <p class="summary" th:text="${profile.summary}">
+                Integration expert with deep experience in SAP Integration Suite, PI/PO, API Management, cloud migrations, and enterprise-grade integration architecture.
+            </p>
+            <div class="actions">
+                <a class="btn btn-primary" th:href="${profile.linkedinUrl}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a class="btn btn-soft" th:href="${profile.publicationUrl}" target="_blank" rel="noopener noreferrer">Publications</a>
+                <a class="btn btn-soft" th:href="${profile.credlyUrl}" target="_blank" rel="noopener noreferrer">Credly</a>
+                <a class="btn btn-outline" th:href="@{/Profile.pdf}" download>Download Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Core Focus</h2>
+        <div class="chip-list">
+            <span class="chip" th:each="focus : ${focusAreas}" th:text="${focus}">SAP Integration Suite and SAP Event Mesh</span>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Projects And Publications</h2>
+        <div class="gallery-grid">
+            <article class="gallery-card" th:each="item : ${galleryItems}">
+                <p class="gallery-category" th:text="${item.category}">Publication</p>
+                <h3 th:text="${item.title}">Enterprise Integration Publications</h3>
+                <p class="muted" th:text="${item.subtitle}">Thought Leadership</p>
+                <p th:text="${item.description}">A collection of write-ups and practical integration notes from real-world SAP and API projects.</p>
+                <a class="mini-link" th:href="${item.url}" target="_blank" rel="noopener noreferrer">Open Link</a>
+            </article>
+        </div>
+    </section>
+
+    <section class="info-grid">
+        <article class="card">
+            <h3>Top Skills</h3>
+            <div class="chip-list">
+                <span class="chip" th:each="skill : ${topSkills}" th:text="${skill}">Spring Boot</span>
+            </div>
+        </article>
+
+        <article class="card">
+            <h3>Languages</h3>
+            <ul class="clean-list">
+                <li th:each="language : ${languages}" th:text="${language}">English (Full Professional)</li>
+            </ul>
+        </article>
+    </section>
+
+    <section class="card">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <article class="timeline-item" th:each="exp : ${experiences}">
+                <div class="timeline-head">
+                    <h3 th:text="${exp.role} + ' - ' + ${exp.company}">Senior Consultant - SAP Labs India</h3>
+                    <p class="muted" th:text="${exp.duration}">January 2020 - Present</p>
+                </div>
+                <p class="muted" th:text="${exp.location}">Gurugram, Haryana, India</p>
+                <p th:text="${exp.details}">Leading enterprise integration engagements across SAP landscapes, cloud migration, and integration architecture.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="info-grid">
+        <article class="card">
+            <h3>Certifications</h3>
+            <ul class="clean-list">
+                <li th:each="cert : ${certifications}" th:text="${cert}">SAP Certified Professional</li>
+            </ul>
+        </article>
+
+        <article class="card">
+            <h3>Education</h3>
+            <div class="education-list">
+                <article class="edu-item" th:each="edu : ${education}">
+                    <h4 th:text="${edu.institution}">Visvesvaraya Technological University</h4>
+                    <p th:text="${edu.qualification}">Bachelor of Engineering (Information Technology)</p>
+                    <p class="muted" th:text="${edu.duration}">2000 - 2004</p>
+                </article>
+            </div>
+        </article>
+    </section>
+
+    <section class="card contact-card">
+        <h2>Contact</h2>
+        <div class="contact-icons">
+            <a class="contact-icon" th:href="'mailto:' + ${profile.primaryEmail}" title="Primary Email">
+                <span class="icon-wrap">mail</span>
+                <span>Email</span>
+            </a>
+            <a class="contact-icon" th:href="'mailto:' + ${profile.secondaryEmail}" title="Alternate Email">
+                <span class="icon-wrap">alt</span>
+                <span>Alt Email</span>
+            </a>
+            <a class="contact-icon" th:href="${profile.linkedinUrl}" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <span class="icon-wrap">in</span>
+                <span>LinkedIn</span>
+            </a>
+            <a class="contact-icon" th:href="${profile.publicationUrl}" target="_blank" rel="noopener noreferrer" title="Publications">
+                <span class="icon-wrap">pub</span>
+                <span>Publications</span>
+            </a>
+            <a class="contact-icon" th:href="${profile.credlyUrl}" target="_blank" rel="noopener noreferrer" title="Credly">
+                <span class="icon-wrap">cert</span>
+                <span>Credly</span>
+            </a>
+            <a class="contact-icon" th:href="@{/Profile.pdf}" download title="Download Resume">
+                <span class="icon-wrap">pdf</span>
+                <span>Resume</span>
+            </a>
+        </div>
+    </section>
+</main>
+</body>
+</html>
